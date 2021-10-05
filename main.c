@@ -1,38 +1,40 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <math.h>
 
-int main()
-{
-    int num1 ,num2,Result;
-    char operation;
+int main() {
+    double num1, num2, Result = 0;
+    char operation, add = '+', sub = '-', mul = '*', div = '/';
 
-    printf("\nEnter operation:  ");
-    scanf("%c" ,&operation);
+    printf("Enter operation: ( +, -, *, /): ");
+    scanf("%c", &operation);
 
-    printf("\nEnter first number ");
-    scanf("%d",&num1);
+    if (add == operation || sub == operation || mul == operation || div == operation) {
+        printf("Enter two operands: ");
+        scanf("%lf,%lf", &num1, &num2);
+        if((round(num1) == num1) || (round(num2) == num2)){
+            switch (operation) {
+                case '+' :
+                    Result = num1 + num2;
+                    break;
 
-    printf("\nEnter second number ");
-    scanf("%d",&num2);
+                case '-' :
+                    Result = num1 - num2;
+                    break;
+                case '*':
+                    Result = num1 * num2;
+                    break;
 
-    switch(operation)
-    {
-    case'+' :
-        Result = num1+ num2;
-        break;
-
-    case '-' :
-        Result = num1-num2;
-        break;
-    case '*':
-        Result = num1*num2;
-        break;
-
-    case '/':
-        Result = num1/num2;
-        break;
-
+                case '/':
+                    Result = num1 / num2;
+                    break;
+            }
+        } else{
+            printf("Please insert the correct values");
+        }
+    } else {
+        printf("Error! operator is not correct");
     }
-    printf("\nResult  = %d" , Result);
+
+    printf("Result = %lf", Result);
     return 0;
 }
